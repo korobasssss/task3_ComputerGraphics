@@ -11,18 +11,20 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.objecthunter.exp4j.*;
 public class MainForm extends JFrame {
 
 
     private JPanel panelMain;
     private JComboBox comboBox1;
-    private JTextField textField1;
+    private JTextField textFieldGetFunction;
     private JSpinner spinnerParameter;
     public JPanel coordinatePlanePanel;
     private JSpinner spinnerScale;
     private JTextField textFieldReadX;
     private JTextField textFieldReadY;
     private JButton buttonRead;
+    private JButton buttonPresentFunction;
 
     private int CENTER_X;
     private int CENTER_Y;
@@ -49,6 +51,41 @@ public class MainForm extends JFrame {
 
         });
 
+        buttonPresentFunction.addActionListener( k -> {
+            points.clear();
+            for (int x = -CENTER_X; x <= getWidth() - CENTER_X; x++) {
+                if (x != 0) {
+                    if (findParameter()) {
+                        Expression e = new ExpressionBuilder(textFieldGetFunction.getText())
+                                .variables("x", "a")
+                                .build()
+                                .setVariable("x", x)
+                                .setVariable("a", Integer.parseInt(String.valueOf(spinnerParameter.getValue())));
+                        int y = Math.round((float) e.evaluate());
+                        if (y >= -CENTER_Y && y <= CENTER_Y) points.add(new Coordinates(x, y));
+                    }
+                    else {
+                        Expression e = new ExpressionBuilder(textFieldGetFunction.getText())
+                                .variables("x")
+                                .build()
+                                .setVariable("x", x);
+                        int y = Math.round((float) e.evaluate());
+                        if (y >= -CENTER_Y && y <= CENTER_Y) points.add(new Coordinates(x, y));
+                    }
+
+                }
+
+            }
+        });
+
+    }
+
+    private boolean findParameter() {
+        String str= textFieldGetFunction.getText();
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'a') return true;
+        }
+        return false;
     }
 
     private void createUIComponents() {
