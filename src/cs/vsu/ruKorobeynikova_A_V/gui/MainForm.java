@@ -112,8 +112,9 @@ public class MainForm extends JFrame {
 
             if (points.size() > 0) {
                 changedPoints.clear();
-                g2.setStroke(new BasicStroke(5));
+                g2.setStroke(new BasicStroke(8));
                 drawPoints(g2);
+                if (points.size() > 1) connectingPoints(g2);
                 g2.setStroke(new BasicStroke(1));
             }
 
@@ -162,6 +163,16 @@ public class MainForm extends JFrame {
                 g2D.fillOval(CENTER_X + coordinates.getX(), CENTER_Y - coordinates.getY() ,5, 5);
                 changedPoints.add(coordinates);
             }
+        }
+
+        private void connectingPoints(Graphics2D g2) {
+            g2.setColor(Color.pink);
+            g2.setStroke(new BasicStroke(3));
+            for (int i = 0; i < points.size() - 1; i++) {
+                int a = points.get(i).getX();
+                g2.drawLine(CENTER_X + (points.get(i).getX() * ONE_STEP), CENTER_Y - (points.get(i).getY() * ONE_STEP), CENTER_X + points.get(i + 1).getX() * ONE_STEP, CENTER_Y - points.get(i + 1).getY() * ONE_STEP);
+            }
+            g2.setColor(Color.black);
         }
 
         public void setPoint(Coordinates coordinate) {
