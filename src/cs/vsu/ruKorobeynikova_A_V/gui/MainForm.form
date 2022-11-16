@@ -40,7 +40,7 @@
                   <grid row="8" column="1" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
-              <component id="b81b9" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+              <component id="b81b9" class="javax.swing.JComboBox" binding="comboBoxChooseCurve">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="5" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
