@@ -25,6 +25,7 @@ public class MainForm extends JFrame {
     private JTextField textFieldReadY;
     private JButton buttonRead;
     private JButton buttonPresentFunction;
+    private JButton buttonClear;
 
     DrawCurve drawCurve;
 
@@ -74,6 +75,11 @@ public class MainForm extends JFrame {
                     if (y >= -CENTER_Y && y <= CENTER_Y) pointsFunc.add(new Coordinates(x, y));
                 }
             }
+        });
+
+        buttonClear.addActionListener( k -> {
+            pointsFunc.clear();
+            pointsCurve.clear();
         });
     }
 
@@ -185,15 +191,13 @@ public class MainForm extends JFrame {
         }
 
         private void connectingPoints(Graphics2D g2, List<Coordinates> list) {
-            g2.setStroke(new BasicStroke(2));
-            if (list.size() > 2) {
-                pointsCurve.get(0);
-            }
+            g2.setStroke(new BasicStroke(3));
+
             drawCurve = new DrawCurve(g2, list.size(), 0);
             g2.setColor(Color.darkGray);
             for (int i = 0; i < list.size() - 1; i++) {
                 drawCurve.drawCurve((int)Math.round(CENTER_X + list.get(i).getX() * ONE_STEP), (int)Math.round(CENTER_Y - list.get(i).getY() * ONE_STEP),
-                        (int)Math.round(CENTER_X + list.get(i + 1).getX() * ONE_STEP), (int)Math.round(CENTER_Y - list.get(i + 1).getY() * ONE_STEP), 1, 2);
+                        (int)Math.round(CENTER_X + list.get(i + 1).getX() * ONE_STEP), (int)Math.round(CENTER_Y - list.get(i + 1).getY() * ONE_STEP), 1, 4);
             }
             g2.setColor(Color.black);
         }

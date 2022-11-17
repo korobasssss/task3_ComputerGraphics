@@ -19,7 +19,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="d4845" layout-manager="GridLayoutManager" row-count="9" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="d4845" layout-manager="GridLayoutManager" row-count="10" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <splitpane position="left"/>
@@ -163,6 +163,14 @@
                 </constraints>
                 <properties>
                   <text value="y =  "/>
+                </properties>
+              </component>
+              <component id="727d" class="javax.swing.JButton" binding="buttonClear">
+                <constraints>
+                  <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Очистить"/>
                 </properties>
               </component>
             </children>
