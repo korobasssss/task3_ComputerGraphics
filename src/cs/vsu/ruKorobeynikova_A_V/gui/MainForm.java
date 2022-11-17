@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import cs.vsu.ruKorobeynikova_A_V.DrawCurve;
+import cs.vsu.ruKorobeynikova_A_V.Forms.BSpline;
 import cs.vsu.ruKorobeynikova_A_V.Forms.Bezier;
 import net.objecthunter.exp4j.*;
 public class MainForm extends JFrame {
@@ -114,14 +115,24 @@ public class MainForm extends JFrame {
                 List<Coordinates> pointsToDrawLines = new ArrayList<>();
                 changedPoints.clear();
                 g2.setStroke(new BasicStroke(1));
-                if (String.valueOf(comboBoxChooseCurve.getSelectedItem()).equals("Безье")) {
-                    if (pointsCurve.size() > 0) {
-                        Bezier bezier = new Bezier(pointsCurve);
-                        bezier.calculation();
-                        System.out.println(bezier.getAddPoints().size());
-                        if (bezier.getAddPoints().size() > 0) pointsToDrawLines = bezier.getAddPoints();
+                String who = String.valueOf(comboBoxChooseCurve.getSelectedItem());
+                switch (who) {
+                    case "Безье" -> {
+                        if (pointsCurve.size() > 2) {
+                            Bezier bezier = new Bezier(pointsCurve);
+                            bezier.calculation();
+                            pointsToDrawLines = bezier.getAddPoints();
+                        }
+                    }
+                    case "Б-сплайн" -> {
+                        if (pointsCurve.size() > 3) {
+                            BSpline bSpline = new BSpline(pointsCurve);
+                            bSpline.calculation();
+                            pointsToDrawLines = bSpline.getAddPoints();
+                        }
                     }
                 }
+
                 connectingPoints(g2, pointsToDrawLines);
                 drawPoints(g2, pointsCurve);
             }
