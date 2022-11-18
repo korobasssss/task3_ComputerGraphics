@@ -48,7 +48,6 @@
                   <model>
                     <item value="-"/>
                     <item value="Безье"/>
-                    <item value="Эрмит"/>
                     <item value="Б-сплайн"/>
                   </model>
                 </properties>
